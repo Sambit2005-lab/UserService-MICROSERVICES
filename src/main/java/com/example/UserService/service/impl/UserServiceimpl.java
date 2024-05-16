@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -17,6 +18,10 @@ public class UserServiceimpl implements UserServices {
     private UserRepositories userRepositories;
     @Override
     public User saveuser(User user) {
+        //GENERATE UNIQUE USER ID
+       String randomUserId= UUID.randomUUID().toString();
+       user.setUserId(randomUserId);
+
         return userRepositories.save(user);
     }
 
